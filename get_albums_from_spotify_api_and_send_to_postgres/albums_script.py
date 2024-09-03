@@ -63,16 +63,6 @@ def get_tracks_from_album(album_id):
 
     return album_tracks
 
-
-# define connection string for sql server
-connection_string = (f"mssql+pyodbc://{os.environ["UID"]}:"
-                     f"{os.environ["PWD"]}@"
-                     f"{os.environ["SERVER"]}/"
-                     f"{os.environ["DATABASE"]}?"
-                     "driver=ODBC+Driver+17+for+SQL+Server")
-
-# open connection to sql server
-
 def write_albums_and_tracks_to_sql_server(artist_id):
     """
     """
@@ -92,7 +82,9 @@ def write_albums_and_tracks_to_sql_server(artist_id):
         album_tracks = get_tracks_from_album(album["Album ID"])
         print(f"Getting all the tracks from the album {album["Album Name"]}...")
 
-        #add all the track dicts one by one to the artist tracks list
+        # add all the track dicts one by one as a single element each to the 
+        # artist_tracks list, rather than a list of track dicts for each album as
+        # a single element to artic_tracks.. avoids nested lists
         artist_tracks.extend(track for track in album_tracks)
     
         
