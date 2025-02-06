@@ -107,7 +107,8 @@ def write_albums_and_tracks_to_sql_server(artist_id):
                             schema= "dbo", if_exists= 'replace', 
                             index = False)
     
-write_albums_and_tracks_to_sql_server(artist_id)
+if __name__ == "__main__":
+    write_albums_and_tracks_to_sql_server(artist_id)
     
     
 
